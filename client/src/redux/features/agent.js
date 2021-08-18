@@ -70,7 +70,7 @@ export const addClientsToAgent = (clientId, agentId) => {
     dispatch({ type: "agent/addClient/pending" });
 
     try {
-      await fetch(`/add/client/to/${agentId}`, {
+      await fetch(`api/add/client/to/${agentId}`, {
         method: "POST",
         body: JSON.stringify({ client: clientId }),
         headers: {
@@ -89,7 +89,7 @@ export const loadAllAgents = () => {
     dispatch({ type: "agents/fetch/pending" });
 
     try {
-      const res = await fetch("/agents");
+      const res = await fetch("api/agents");
 
       const json = await res.json();
 
@@ -105,7 +105,7 @@ export const loadAgentById = (agentId) => {
     dispatch({ type: "agent/getById/pending" });
 
     try {
-      const res = await fetch(`/agent/${agentId}`);
+      const res = await fetch(`api/agent/${agentId}`);
       const json = await res.json();
 
       dispatch({ type: "agent/getById/fulfilled", payload: json });

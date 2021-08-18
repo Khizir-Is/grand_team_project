@@ -53,7 +53,7 @@ export const registrationAgent = (data) => {
   return async (dispatch) => {
     dispatch({ type: "agent/signUp/pending" });
     console.log(data);
-    const res = await fetch("/agent", {
+    const res = await fetch("api/agent", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {
@@ -74,7 +74,7 @@ export const registrationClient = (data) => {
   return async (dispatch) => {
     dispatch({ type: "client/signUp/pending" });
 
-    const res = await fetch("/client", {
+    const res = await fetch("api/client", {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

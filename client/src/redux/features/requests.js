@@ -109,7 +109,7 @@ export const loadAllRequests = () => {
     dispatch({ type: "requests/get/pending" });
 
     try {
-      const response = await fetch("/requests");
+      const response = await fetch("api/requests");
       const json = await response.json();
 
       dispatch({ type: "requests/get/fulfilled", payload: json });
@@ -124,7 +124,7 @@ export const loadRequestById = (id) => {
     dispatch({ type: "request/fetch/pending" });
 
     try {
-      const res = await fetch(`/request/${id}`);
+      const res = await fetch(`api/request/${id}`);
       const json = await res.json();
 
       dispatch({ type: "request/fetch/fulfilled", payload: json });
@@ -139,7 +139,7 @@ export const addAppraiser = (request, agent) => {
     dispatch({ type: "request/addAppraiser/pending" });
 
     try {
-      const res = await fetch(`/appraisers/${request}`, {
+      const res = await fetch(`api/appraisers/${request}`, {
         method: "POST",
         body: JSON.stringify({ request: agent }),
         headers: {
@@ -163,7 +163,7 @@ export const addRequest = (data, id) => {
     const state = getState();
     dispatch({ type: "request/add/pending" });
     try {
-      const res = await fetch(`/client/${id}/request`, {
+      const res = await fetch(`api/client/${id}/request`, {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -183,7 +183,7 @@ export const removeRequest = (id) => {
   return async (dispatch) => {
     dispatch({ type: "request/delete/pending" });
     try {
-      await fetch(`/request/${id}`, {
+      await fetch(`api/request/${id}`, {
         method: "DELETE",
       });
 
@@ -199,7 +199,7 @@ export const editActiveRequest = (id) => {
     dispatch({ type: "requestActive/edit/pending" });
 
     try {
-      const res = await fetch(`/request/${id}`, {
+      const res = await fetch(`api/request/${id}`, {
         method: "PATCH",
         body: JSON.stringify({ active: false }),
         headers: {

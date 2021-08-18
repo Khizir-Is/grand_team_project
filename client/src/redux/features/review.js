@@ -50,7 +50,7 @@ export const loadAllReviews = (id) => {
     dispatch({ type: "reviews/fetch/pending" });
 
     try {
-      const res = await fetch(`/reviews/agent/${id}`);
+      const res = await fetch(`api/reviews/agent/${id}`);
       const json = await res.json();
       dispatch({ type: "reviews/fetch/fulfilled", payload: json });
     } catch (e) {
@@ -64,7 +64,7 @@ return async (dispatch, getState) => {
   const state = getState();
   dispatch({ type: "review/add/pending"});
   try {
-    const res = await fetch(`/agent/${id}/review`, {
+    const res = await fetch(`api/agent/${id}/review`, {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {

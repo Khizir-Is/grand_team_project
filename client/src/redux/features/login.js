@@ -205,7 +205,7 @@ export const loginAgent = (login, password) => {
   return async (dispatch) => {
     dispatch({ type: "agent/signIn/pending" });
 
-    const res = await fetch("/login/agent", {
+    const res = await fetch("api/login/agent", {
       method: "POST",
       body: JSON.stringify({ login, password }),
       headers: {
@@ -227,7 +227,7 @@ export const loginClient = (login, password) => {
   return async (dispatch) => {
     dispatch({ type: "client/signIn/pending" });
 
-    const res = await fetch("/login/client", {
+    const res = await fetch("api/login/client", {
       method: "POST",
       body: JSON.stringify({ login, password }),
       headers: {
@@ -301,7 +301,7 @@ export const editAgent = () => {
     dispatch({ type: "agent/edit/pending" });
     const { login } = getState();
     try {
-      const resp = await fetch(`/agent/${login.editingAgent._id}`, {
+      const resp = await fetch(`api/agent/${login.editingAgent._id}`, {
         method: "PATCH",
         body: JSON.stringify(login.editingAgent),
         headers: {
@@ -320,7 +320,7 @@ export const editClient = () => {
     const { login } = getState();
     console.log(login.editingClient);
     try {
-      await fetch(`/client/${login.editingClient._id}`, {
+      await fetch(`api/client/${login.editingClient._id}`, {
         method: "PATCH",
         body: JSON.stringify(login.editingClient),
         headers: {
@@ -342,7 +342,7 @@ export const uploadAvatarAgent = (file) => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await fetch("/avatar/agent", {
+      const res = await fetch("api/avatar/agent", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${login.token}`,
@@ -364,7 +364,7 @@ export const uploadAvatarClient = (file) => {
     try {
       const formData = new FormData();
       formData.append("file", file);
-      const res = await fetch("/avatar/client", {
+      const res = await fetch("api/avatar/client", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${login.token}`,
